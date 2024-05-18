@@ -1,0 +1,7 @@
+{
+  "name": "PIA_MOT_MRM",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
