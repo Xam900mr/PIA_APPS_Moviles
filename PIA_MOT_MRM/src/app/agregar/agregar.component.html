@@ -1,5 +1,4 @@
 <ion-content>
-
   <ion-content>
     <ion-content>
       <ion-header>
@@ -13,17 +12,18 @@
           Agregar Canciones
        </ion-header>
 
+       <form #agregarCancion="ngForm">
   <ion-item>
     <ion-label >
       <strong> Nombre de la cancion</strong>
-      <ion-input></ion-input>
+      <ion-input type="text" name="nombre" ngModel></ion-input>
     </ion-label>
   </ion-item>
 
   <ion-item>
     <ion-label>
       Artista
-      <ion-input></ion-input>
+      <ion-input type="text" name="artista" ngModel></ion-input>
     </ion-label>
     
   </ion-item>
@@ -31,16 +31,14 @@
   <ion-item>
     <ion-label>
       Audio
-      <ion-input type="file"></ion-input>
+      <input type="file" (change)="onFileSelected($event)" accept="audio/*">
     </ion-label>
     
   </ion-item>
 
-  <ion-item>
-    <ion-label>
-      Portada
-      <ion-input type="file" accept="image/*"></ion-input>
-    </ion-label>
-    
-  </ion-item>
+  
+  <ion-button  expand="block" fill="clear" (click)="ConfirmarModal()">
+    Agregar Cancion
+  </ion-button>
+</form>
 </ion-content>

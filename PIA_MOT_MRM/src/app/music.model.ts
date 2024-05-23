@@ -1,5 +1,6 @@
 export interface cancion{
     nombre: string,
-    favorito: boolean,
+    artista: string,
+    foto: string,
     audio: string;
 }

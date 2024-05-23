@@ -4,7 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { SiginComponent } from './sigin/sigin.component';
 import { AgregarComponent } from './agregar/agregar.component';
 import { user } from './user.model';
-import { Cancion } from './sigin/cancion';
+import { cancion } from './music.model';
 import { UsuariosService } from './usuarios.service';
 
 @Component({
@@ -15,9 +15,7 @@ import { UsuariosService } from './usuarios.service';
 export class AppComponent {
   public appPages = [
     { title: 'Inicio', url: '/folder/Inicio', icon: 'home' },
-    { title: 'Busqueda', url: '/folder/Busqueda', icon: 'search' },
-    { title: 'Biblioteca', url: '/folder/Biblioteca', icon: 'musical-notes' },
-    { title: 'Eliminar', url: '/folder/Eliminar', icon: 'trash' },
+    { title: 'Busqueda', url: '/folder/Busqueda', icon: 'search' }
   ];
  // public labels = ['', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
   constructor( private modal: ModalController) {}
@@ -70,13 +68,15 @@ export class AppComponent {
       cssClass:'Clasemodal'
     });
     modal.onDidDismiss().then((dataReturned) => {
-      this.isModalOpen=false;
+     /*this.isModalOpen=false;
       if(dataReturned.data) {
         this.song = dataReturned.data;
-      }
+      }*/
     });
     return await modal.present();
   }
+
+
 
   active_user: user={
     email: '',
@@ -84,12 +84,11 @@ export class AppComponent {
     pass: ''
   };
 
-  song: Cancion = {
-    Nombre: '',
+  song: cancion = {
+    nombre: '',
     audio: '',
-    album: '',
-    img_album: '',
-    favoritos: false
+    artista: '',
+    foto: '',
   };
 
 
