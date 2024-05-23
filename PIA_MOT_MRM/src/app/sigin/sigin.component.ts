@@ -5,17 +5,16 @@ import { UsuariosService } from '../usuarios.service';
 import { AlertController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  selector: 'app-sigin',
+  templateUrl: './sigin.component.html',
+  styleUrls: ['./sigin.component.scss'],
 })
-export class LoginComponent  implements OnInit {
+export class SiginComponent  implements OnInit {
 
-  constructor(private alerta:AlertController, private modal:ModalController, private service:UsuariosService) {}
+  constructor(private alerta:AlertController, private modal:ModalController, private service:UsuariosService) { }
 
   userarray: user[]=this.service.usuarios;
-  
-  
+
   CerrarModal(){
     this.modal.dismiss()
   };
@@ -25,26 +24,28 @@ export class LoginComponent  implements OnInit {
     let i = 0;
   
     while (i < this.userarray.length) {
-      if (this.userarray[i].user_name === this.usuario.user_name && this.userarray[i].pass === this.usuario.pass) {
+      if (this.userarray[i].user_name === this.usuario.user_name ) {
         coincide = true;
-        this.modal.dismiss(this.usuario);
-        break; 
+        const alert = await this.alerta.create({
+          header: 'Error',
+          message: 'Usuario ya existe.',
+          buttons: ['OK']});
+
+          await alert.present();
+        break;
       } else {
         i++;
       }
     }
   
     if (!coincide) {
-      const alert = await this.alerta.create({
-        header: 'Error',
-        message: 'Usuario o contraseña incorrectos.',
-        buttons: ['OK']
-      });
+      
+      this.modal.dismiss(this.usuario);
+      };
   
-      await alert.present();
-    }
+      
   };
-        
+  
 
     usuario: user = {
       email: '',

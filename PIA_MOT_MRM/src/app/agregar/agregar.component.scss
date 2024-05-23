@@ -17,6 +17,10 @@ ion-label{
     color: black;
 }
 
+.cerrar{
+    float: right;
+}
+
 ion-input{
     color: gray;
 }
@@ -24,10 +28,7 @@ ion-input{
 ion-item{
     --background: white;
     color: black;
-    width: 50%;
-    margin-left: 25%;
+    width: 75%;
+    margin-left: 7.5%;
     height: 60px;
-}
-.cerrar{
-    float: right;
 }
