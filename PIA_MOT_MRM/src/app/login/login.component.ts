@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { user } from '../user.model';
-import { UsuariosService } from '../usuarios.service';
 import { AlertController } from '@ionic/angular';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -11,9 +11,9 @@ import { AlertController } from '@ionic/angular';
 })
 export class LoginComponent  implements OnInit {
 
-  constructor(private alerta:AlertController, private modal:ModalController, private service:UsuariosService) {}
+  constructor(private alerta:AlertController, private modal:ModalController, private authService: AuthService) {}
 
-  userarray: user[]=this.service.usuarios;
+  //userarray: user[]=this.service.usuarios;
   
   
   CerrarModal(){
@@ -21,20 +21,12 @@ export class LoginComponent  implements OnInit {
   };
 
   async ConfirmarModal() {
-    let coincide: boolean = false;
-    let i = 0;
-  
-    while (i < this.userarray.length) {
-      if (this.userarray[i].user_name === this.usuario.user_name && this.userarray[i].pass === this.usuario.pass) {
-        coincide = true;
-        this.modal.dismiss(this.usuario);
-        break; 
-      } else {
-        i++;
-      }
-    }
-  
-    if (!coincide) {
+
+    try {
+      await this.authService.login(this.usuario.user_name, this.usuario.pass);
+      this.modal.dismiss(this.usuario);
+    } catch (error) {
+      console.error("Error during login:", error);
       const alert = await this.alerta.create({
         header: 'Error',
         message: 'Usuario o contraseña incorrectos.',
@@ -47,7 +39,6 @@ export class LoginComponent  implements OnInit {
         
 
     usuario: user = {
-      email: '',
       user_name: '',
       pass: ''
     };

@@ -13,6 +13,8 @@ export class AudioUploadService {
 
   constructor( private dbService: DatabaseService) { }
 
+  favoritos: boolean =false;
+
   uploadAudio(file:File, filepath:string, nombre: string, artista: string): Promise <string> {
     return new Promise((resolve, reject) => {
       const storageRef = ref(this.storage, filepath);
@@ -29,7 +31,7 @@ export class AudioUploadService {
         async () => {
           try {
             const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-            const record = { url: downloadURL, nombre: nombre, artista: artista, createdAt: new Date() };
+            const record = { url: downloadURL, nombre: nombre, artista: artista, favoritos: this.favoritos, createdAt: new Date() };
             await this.dbService.addAudioRecord(record);
             resolve(downloadURL);
           } catch (error) {

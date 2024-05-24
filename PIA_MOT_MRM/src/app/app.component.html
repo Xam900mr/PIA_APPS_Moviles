@@ -20,14 +20,23 @@
             <ion-label>Agregar</ion-label>
         </ion-item>
 
-            <ion-item (click)="presentLogin()">
+        <ion-item >
+          <ion-icon aria-hidden="true" slot="start" name="search"></ion-icon>
+          <ion-label>Busqueda</ion-label>
+      </ion-item>
+
+            <ion-item (click)="presentLogin()" *ngIf="!islogin">
                   <ion-icon aria-hidden="true" slot="start" name="log-in"></ion-icon>
                   <ion-label>Login</ion-label>
             </ion-item>
-            <ion-item (click)="presentSigin()">
+            <ion-item (click)="presentSigin()" *ngIf="!islogin">
               <ion-icon aria-hidden="true" slot="start" name="send"></ion-icon>
               <ion-label>Sign In</ion-label>
           </ion-item>
+          <ion-item (click)="logout()" *ngIf="islogin">
+            <ion-icon aria-hidden="true" slot="start" name="log-out"></ion-icon>
+            <ion-label>Logout</ion-label>
+      </ion-item>
 
         </ion-list>
 

@@ -4,8 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { SiginComponent } from './sigin/sigin.component';
 import { AgregarComponent } from './agregar/agregar.component';
 import { user } from './user.model';
-import { cancion } from './music.model';
-import { UsuariosService } from './usuarios.service';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-root',
@@ -15,12 +14,22 @@ import { UsuariosService } from './usuarios.service';
 export class AppComponent {
   public appPages = [
     { title: 'Inicio', url: '/folder/Inicio', icon: 'home' },
-    { title: 'Busqueda', url: '/folder/Busqueda', icon: 'search' }
   ];
  // public labels = ['', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
-  constructor( private modal: ModalController) {}
+  constructor( private modal: ModalController, private authService: AuthService) {}
 
   private isModalOpen = false;
+  public islogin = false;
+
+
+  logout(){
+    this.authService.logout();
+    this.active_user ={
+      user_name: '',
+      pass: ''
+    };
+    this.islogin=!this.islogin;
+  }
 
   async presentLogin() {
     if(this.isModalOpen){
@@ -35,6 +44,9 @@ export class AppComponent {
       this.isModalOpen=false;
       if(dataReturned.data) {
         this.active_user = dataReturned.data;
+        if(this.active_user.user_name==""){
+          this.islogin=!this.islogin;
+        }
       }
     });
     return await modal.present();
@@ -51,8 +63,12 @@ export class AppComponent {
     });
     modal.onDidDismiss().then((dataReturned) => {
       this.isModalOpen=false;
+      
       if(dataReturned.data) {
         this.active_user = dataReturned.data;
+        if(this.active_user.user_name==""){
+          this.islogin=!this.islogin;
+        }
       }
     });
     return await modal.present();
@@ -68,10 +84,7 @@ export class AppComponent {
       cssClass:'Clasemodal'
     });
     modal.onDidDismiss().then((dataReturned) => {
-     /*this.isModalOpen=false;
-      if(dataReturned.data) {
-        this.song = dataReturned.data;
-      }*/
+     this.isModalOpen=false;
     });
     return await modal.present();
   }
@@ -79,19 +92,9 @@ export class AppComponent {
 
 
   active_user: user={
-    email: '',
     user_name: '',
     pass: ''
   };
 
-  song: cancion = {
-    nombre: '',
-    audio: '',
-    artista: '',
-    foto: '',
-  };
-
-
- 
   
 }
