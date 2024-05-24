@@ -26,3 +26,29 @@ ion-menu-button {
 #container a {
   text-decoration: none;
 }
+
+.card {
+  height: 250px;
+  width: 210px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #202020;
+  border-radius: 12px;
+}
+
+ion-card {
+  width: 22%;
+  height: 300px;
+  align-items: center;
+  justify-content: center;
+}
+
+audio {
+  width: 100%;
+}
+
+img {
+  height: 50%;
+}
