@@ -3,6 +3,7 @@ import { ModalController } from '@ionic/angular';
 import { user } from '../user.model';
 import { AlertController } from '@ionic/angular';
 import { AuthService } from '../auth.service';
+import { FotService } from '../fot.service';
 
 
 @Component({
@@ -12,9 +13,10 @@ import { AuthService } from '../auth.service';
 })
 export class SiginComponent  implements OnInit {
 
-  constructor(private alerta:AlertController, private modal:ModalController, private authService: AuthService) { }
+  constructor(private alerta:AlertController, private modal:ModalController, 
+    private authService: AuthService, public photoService : FotService) { }
 
-    CerrarModal(){
+  CerrarModal(){
     this.modal.dismiss()
   };
 
@@ -38,10 +40,14 @@ export class SiginComponent  implements OnInit {
   };
   
 
-    usuario: user = {
-      user_name: '',
-      pass: ''
-    };
+  usuario: user = {
+    user_name: '',
+    pass: ''
+  };
+
+  tomarFoto() {
+    this.photoService.addNewToGallery();
+  }
 
   ngOnInit() {}
 

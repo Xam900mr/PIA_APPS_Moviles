@@ -14,6 +14,7 @@ import { AuthService } from './auth.service';
 export class AppComponent {
   public appPages = [
     { title: 'Inicio', url: '/folder/Inicio', icon: 'home' },
+    {title: 'Busqueda', url: '/busqueda', icon: 'search'}
   ];
  // public labels = ['', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
   constructor( private modal: ModalController, private authService: AuthService) {}

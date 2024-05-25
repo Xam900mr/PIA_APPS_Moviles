@@ -30,8 +30,13 @@
     <ion-button  expand="block" fill="clear" (click)="ConfirmarModal()">
       Registrarse
     </ion-button>
-
-   
     
   </form>
+
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button (click)="tomarFoto()">
+      <ion-icon name="camera"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
 </ion-content>
