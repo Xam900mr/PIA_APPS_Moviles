@@ -16,6 +16,8 @@ export class SiginComponent  implements OnInit {
   constructor(private alerta:AlertController, private modal:ModalController, 
     private authService: AuthService, public photoService : FotService) { }
 
+    public capturedPhoto: any;
+
   CerrarModal(){
     this.modal.dismiss()
   };
@@ -24,6 +26,7 @@ export class SiginComponent  implements OnInit {
 
   try {
     await this.authService.register(this.usuario.user_name, this.usuario.pass);
+    this.usuario.foto = this.capturedPhoto;
     this.modal.dismiss(this.usuario);
   } catch (error) {
     console.error("Error during registration:", error);
@@ -39,14 +42,14 @@ export class SiginComponent  implements OnInit {
   
   };
   
-
   usuario: user = {
     user_name: '',
-    pass: ''
+    pass: '',
+    foto: ''
   };
 
-  tomarFoto() {
-    this.photoService.addNewToGallery();
+  async tomarFoto() {
+    this.capturedPhoto = await this.photoService.addNewToGallery();
   }
 
   ngOnInit() {}

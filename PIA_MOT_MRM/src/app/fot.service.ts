@@ -14,6 +14,9 @@ export class FotService {
     resultType: CameraResultType.Uri,      
     source: CameraSource.Camera,
     quality: 100    
+    });
+    return capturedPhoto;
+  }
 
-    });}
+   
 }

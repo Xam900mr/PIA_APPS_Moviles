@@ -40,7 +40,8 @@ export class LoginComponent  implements OnInit {
 
     usuario: user = {
       user_name: '',
-      pass: ''
+      pass: '',
+      foto: ''
     };
 
   ngOnInit() {}

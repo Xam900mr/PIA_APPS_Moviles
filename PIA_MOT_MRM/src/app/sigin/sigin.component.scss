@@ -18,14 +18,21 @@ ion-label{
 }
 
 ion-input{
+    text-align: left;
+}
+
+ion-input{
     color: gray;
+}
+ion-icon{
+    color: black;
 }
 
 ion-item{
     --background: white;
     color: black;
-    width: 50%;
-    margin-left: 25%;
+    width: 70%;
+    margin-left: 15%;
     height: 60px;
 }
 .cerrar{

@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild, inject} from '@angular/core';
 import { ModalController} from '@ionic/angular';
 import { Firestore } from '@angular/fire/firestore';
-import { addDoc, collection } from 'firebase/firestore';
 import { AudioUploadService } from '../audio-upload.service';
 
 @Component({

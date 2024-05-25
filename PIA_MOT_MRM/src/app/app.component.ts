@@ -27,7 +27,8 @@ export class AppComponent {
     this.authService.logout();
     this.active_user ={
       user_name: '',
-      pass: ''
+      pass: '',
+      foto: ''
     };
     this.islogin=!this.islogin;
   }
@@ -45,7 +46,7 @@ export class AppComponent {
       this.isModalOpen=false;
       if(dataReturned.data) {
         this.active_user = dataReturned.data;
-        if(this.active_user.user_name==""){
+        if(this.active_user.user_name!=""){
           this.islogin=!this.islogin;
         }
       }
@@ -64,10 +65,9 @@ export class AppComponent {
     });
     modal.onDidDismiss().then((dataReturned) => {
       this.isModalOpen=false;
-      
       if(dataReturned.data) {
         this.active_user = dataReturned.data;
-        if(this.active_user.user_name==""){
+        if(this.active_user.user_name!=""){
           this.islogin=!this.islogin;
         }
       }
@@ -94,7 +94,8 @@ export class AppComponent {
 
   active_user: user={
     user_name: '',
-    pass: ''
+    pass: '',
+    foto: ''
   };
 
   

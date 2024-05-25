@@ -7,7 +7,11 @@
             <ion-icon name="fast-food"></ion-icon>
             Hi-Res
           </ion-list-header>
+          <ion-item *ngIf="active_user.foto" class="foto">
+            <img [src]="active_user.foto.webPath"/>
+          </ion-item>  
           <ion-note>{{active_user.user_name}}</ion-note>
+          
 
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
             <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
